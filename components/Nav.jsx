@@ -7,12 +7,10 @@ export function Nav() {
   const [users, setUsers] = useState([]);
   const { user, isLoaded } = useUser();
 
-  // Verificar se o usuário é um admin e definir os usuários correspondentes
   useEffect(() => {
     if (user && user.organizationMemberships) {
       const isAdmin = user.organizationMemberships.map(prop => prop.role);
       setUsers(isAdmin || []);
-      console.log(users);
     }
   }, [user])
 

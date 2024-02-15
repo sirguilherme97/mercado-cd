@@ -105,3 +105,98 @@ export const publishProduct = async (productId) => {
     throw error;
   }
 };
+
+export const getAllProductsBebidas = async (productId) => {
+  const query = gql`
+    query MyQuery {
+      produtos(where: {categoria_every: {nome: "Bebidas"}}) {
+      nome
+      descricao,
+      preco,
+      url,
+      nomeEmpresa,
+      unOuKg
+    }
+   }
+  `;
+  try {
+    const result = await request(MAIN_URL, query, {
+      productId
+    });
+    return result;
+  } catch (error) {
+    console.error("Error publishing product:", error);
+    throw error;
+  }
+};
+export const getAllProductsCarnes = async (productId) => {
+  const query = gql`
+    query MyQuery {
+      produtos(where: {categoria_every: {nome: "Carnes"}}) {
+      nome
+      descricao,
+      preco,
+      url,
+      nomeEmpresa,
+      unOuKg
+    }
+   }
+  `;
+  try {
+    const result = await request(MAIN_URL, query, {
+      productId
+    });
+    return result;
+  } catch (error) {
+    console.error("Error publishing product:", error);
+    throw error;
+  }
+};
+
+export const getAllProductsDoces = async (productId) => {
+  const query = gql`
+    query MyQuery {
+      produtos(where: {categoria_every: {nome: "Doces"}}) {
+      nome
+      descricao,
+      preco,
+      url,
+      nomeEmpresa,
+      unOuKg
+    }
+   }
+  `;
+  try {
+    const result = await request(MAIN_URL, query, {
+      productId
+    });
+    return result;
+  } catch (error) {
+    console.error("Error publishing product:", error);
+    throw error;
+  }
+};
+
+export const getAllProductsMassas = async (productId) => {
+  const query = gql`
+    query MyQuery {
+      produtos(where: {categoria_every: {nome: "Massas"}}) {
+      nome
+      descricao,
+      preco,
+      url,
+      nomeEmpresa,
+      unOuKg
+    }
+   }
+  `;
+  try {
+    const result = await request(MAIN_URL, query, {
+      productId
+    });
+    return result;
+  } catch (error) {
+    console.error("Error publishing product:", error);
+    throw error;
+  }
+};

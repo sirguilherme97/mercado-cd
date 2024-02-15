@@ -1,16 +1,15 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import { getAllProducts, getAllProductsPromo } from './_utils/graphApi';
-import { Barcode, Beef, Building2, Milk } from 'lucide-react';
-import { Nav } from '../components/Nav'
-import { Categoria } from '../components/Categoria';
-export default function Home() {
-
+import { getAllProductsBebidas, getAllProductsPromo } from '../../../_utils/graphApi';
+import { Barcode, Building2 } from 'lucide-react';
+import { Nav } from '../../../../components/Nav'
+import { Categoria } from '../../../../components/Categoria'
+export default function BebidasPage() {
   const [product, setProduct] = useState([])
   const [productPromo, setProductPromo] = useState([])
 
   useEffect(() => {
-    getAllProducts().then(resp => {
+    getAllProductsBebidas().then(resp => {
       setProduct(resp?.produtos)
     })
     getAllProductsPromo().then(resp => {
@@ -59,8 +58,8 @@ export default function Home() {
             </div>
           </div>
           <div className='flex-col items-center justify-center'>
-            <div className='mt-20 mb-10 h-24 w-full flex flex-col md:flex-row gap-5 items-center justify-center md:items-center md:justify-center'>
-              <h2 className="font-bold text-2xl w-[280px]">Todos os Produtos</h2>
+            <div className='mt-20 mb-10 w-full flex gap-5 items-center justify-center h-20'>
+              <h2 className="font-bold text-2xl w-[280px]">Todos as Bebidas</h2>
               <Categoria />
             </div>
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-16 mt-5 w-full'>
