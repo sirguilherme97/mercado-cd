@@ -1,14 +1,12 @@
 "use client"
-
 import React, { useEffect, useState } from 'react';
 import { getAllProducts, createProduct, publishProduct } from '../../../_utils/graphApi';
 import { Nav } from '../../../../components/Nav';
 import { auth } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
-
 export default function Page() {
-  const {userId} = auth
-  if(userId){
+  const { userId } = auth
+  if (userId) {
     redirect('/')
   }
   const [product, setProduct] = useState([]);
@@ -23,7 +21,6 @@ export default function Page() {
       ePromo: false
     }
   });
-
   useEffect(() => {
     getAllProducts()
       .then(resp => {
@@ -34,30 +31,21 @@ export default function Page() {
         console.error("Error getting product list:", error);
       });
   }, []);
-
   const handleCreateProduct = async () => {
     if (newProductData.nome.trim() !== "") {
-
       const precoFloat = parseFloat(newProductData.preco);
-      
-      if (!isNaN(precoFloat)) { 
+      if (!isNaN(precoFloat)) {
         try {
-
           const existingProduct = product.find(prod => prod.nome === newProductData.nome);
           if (existingProduct) {
             alert("Um produto com o mesmo nome já existe. Por favor, escolha outro nome.");
             return;
           }
-          
-
           const updatedProductData = { ...newProductData, preco: precoFloat };
-  
-
           const createResult = await createProduct(updatedProductData);
           const productId = createResult?.createProduto?.id;
-  
           if (productId) {
-            await publishProduct(productId); 
+            await publishProduct(productId);
           }
           setNewProductData({
             nome: "",
@@ -66,7 +54,7 @@ export default function Page() {
             url: "",
             nomeEmpresa: "",
             unOuKg: false,
-            promocao:{
+            promocao: {
               ePromo: false
             }
           });
@@ -80,15 +68,11 @@ export default function Page() {
       alert("Por favor, insira um nome para o novo produto.");
     }
   };
-  
-  
-  
-  
   const handleChange = (field, value) => {
     if (field.startsWith("promocao")) {
       const promocaoField = field.split(".")[1];
-      setNewProductData({ 
-        ...newProductData, 
+      setNewProductData({
+        ...newProductData,
         promocao: {
           ...newProductData.promocao,
           [promocaoField]: value
@@ -98,11 +82,9 @@ export default function Page() {
       setNewProductData({ ...newProductData, [field]: value });
     }
   };
-  
-
   return (
     <>
-      <Nav/>
+      <Nav />
       <main className='w-screen h-auto px-10'>
         <div className='sm:w-full md:w-2/4 h-auto mt-10'>
           <div className="flex flex-col gap-4 justify-between items-center w-full h-auto px-5">
