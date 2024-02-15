@@ -104,7 +104,7 @@ export default function Page() {
     <>
       <Nav/>
       <main className='w-screen h-auto px-10'>
-        <div className='w-2/4 h-auto mt-10'>
+        <div className='sm:w-full md:w-2/4 h-auto mt-10'>
           <div className="flex flex-col gap-4 justify-between items-center w-full h-auto px-5">
             <input
               type="text"
