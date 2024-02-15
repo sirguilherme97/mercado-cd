@@ -37,29 +37,28 @@ export default function Page() {
 
   const handleCreateProduct = async () => {
     if (newProductData.nome.trim() !== "") {
-      // Convertendo o preço para um número de ponto flutuante
+
       const precoFloat = parseFloat(newProductData.preco);
       
-      if (!isNaN(precoFloat)) { // Verifica se o preço é um número válido
+      if (!isNaN(precoFloat)) { 
         try {
-          // Check if a product with the same name already exists
+
           const existingProduct = product.find(prod => prod.nome === newProductData.nome);
           if (existingProduct) {
             alert("Um produto com o mesmo nome já existe. Por favor, escolha outro nome.");
             return;
           }
           
-          // Update the newProductData object with the parsed precoFloat
+
           const updatedProductData = { ...newProductData, preco: precoFloat };
   
-          // Create the new product if the name is unique
+
           const createResult = await createProduct(updatedProductData);
           const productId = createResult?.createProduto?.id;
   
           if (productId) {
-            await publishProduct(productId); // Publicar o produto após criá-lo
+            await publishProduct(productId); 
           }
-          // Clear the form after successfully creating the product
           setNewProductData({
             nome: "",
             descricao: "",
@@ -87,8 +86,7 @@ export default function Page() {
   
   const handleChange = (field, value) => {
     if (field.startsWith("promocao")) {
-      // If the field is nested inside the promocao object
-      const promocaoField = field.split(".")[1]; // Extract the field name
+      const promocaoField = field.split(".")[1];
       setNewProductData({ 
         ...newProductData, 
         promocao: {

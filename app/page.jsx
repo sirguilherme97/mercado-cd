@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { getAllProducts, getAllProductsPromo} from './_utils/graphApi';
 import { Barcode, Building2} from 'lucide-react';
 import {Nav} from '../components/Nav'
-import { auth } from '@clerk/nextjs';
-import { redirect } from 'next/navigation';
 export default function Home() {
   
   const [product, setProduct] = useState([])
